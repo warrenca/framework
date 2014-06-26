@@ -36,7 +36,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 *
 	 * @var string
 	 */
-	protected $table;
+	protected static $table;
 
 	/**
 	 * The primary key for the model.
@@ -1817,7 +1817,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 */
 	public function getTable()
 	{
-		if (isset($this->table)) return $this->table;
+		if (isset(static::$table)) return static::$table;
 
 		return str_replace('\\', '', snake_case(str_plural(class_basename($this))));
 	}
@@ -1830,7 +1830,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 */
 	public function setTable($table)
 	{
-		$this->table = $table;
+		static::$table = $table;
 	}
 
 	/**
